@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vashani Verma — Gallery & Projects</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --border: 3px solid #111;
+  --radius: 18px;
+  --shadow: 5px 5px 0 #111;
+  --shadow-sm: 3px 3px 0 #111;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:#F7F3EC;
+  font-family:'Space Grotesk',sans-serif;
+  color:#111;
+  overflow-x:hidden;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:#2D1B69;
+  border-bottom:var(--border);
+  padding:0 1.2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;letter-spacing:0.06em;
+  color:#F7F3EC;
+  text-decoration:none;
+}
+.nav-logo span{color:#FF6B6B;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{
+  color:#F7F3EC;
+  text-decoration:none;
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.4rem 0.9rem;
+  border:1.5px solid transparent;border-radius:100px;
+  transition:all 0.2s;
+}
+.nav-links a:hover{background:rgba(255,255,255,0.12);}
+.nav-btn{
+  background:#FF6B6B;color:#111 !important;
+  border:var(--border) !important;
+  box-shadow:var(--shadow-sm);
+}
+.nav-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #111 !important;}
+.hamburger{
+  background:#F7F3EC;border:var(--border);border-radius:10px;
+  width:38px;height:38px;
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;
+}
+.hamburger span{display:block;width:18px;height:2px;background:#111;border-radius:2px;}
+
+/* ===== PAGE HERO ===== */
+.page-hero{
+  background:#FFD93D;
+  border-bottom:var(--border);
+  padding:2.5rem 1.2rem 2rem;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.page-hero::before{
+  content:'GALLERY';
+  position:absolute;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14rem;
+  color:rgba(0,0,0,0.04);
+  left:50%;top:-1rem;
+  transform:translateX(-50%);
+  user-select:none;line-height:1;pointer-events:none;
+  white-space:nowrap;
+}
+.page-hero-inner{position:relative;z-index:2;}
+.page-hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.8rem;letter-spacing:0.06em;
+  line-height:1;margin-bottom:0.5rem;
+}
+.page-hero h1 span{color:#2D1B69;}
+.page-hero p{
+  font-size:0.9rem;font-weight:500;color:#333;
+  max-width:400px;margin:0 auto 1.2rem;line-height:1.6;
+}
+.hero-back-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:#2D1B69;color:#F7F3EC;
+  border:var(--border);border-radius:100px;
+  padding:0.5rem 1.2rem;
+  font-size:0.78rem;font-weight:700;
+  text-decoration:none;letter-spacing:0.04em;
+  box-shadow:var(--shadow-sm);
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.hero-back-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #111;}
+
+/* ===== SECTION LABEL ===== */
+.sec-label{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;letter-spacing:0.08em;
+  padding:0.4rem 1.4rem;
+  border:var(--border);border-radius:100px;
+  box-shadow:var(--shadow-sm);
+  margin-bottom:1.2rem;
+}
+.label-orange{background:#FF9A3C;}
+.label-purple{background:#2D1B69;color:#fff;}
+.label-green{background:#06D6A0;}
+.label-pink{background:#FF6B6B;}
+.label-blue{background:#4ECDC4;color:#111;}
+.label-yellow{background:#FFD93D;}
+
+/* ===== GALLERY SECTION ===== */
+.gallery-section{
+  background:#FFE0E6;
+  border-bottom:var(--border);
+  padding:2rem 1.2rem;
+}
+.gallery-intro{
+  background:#F7F3EC;
+  border:var(--border);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  box-shadow:var(--shadow);
+  margin-bottom:1.5rem;
+}
+.gallery-intro h2{
+  font-family:'Caveat',cursive;
+  font-size:1.7rem;margin-bottom:0.5rem;
+}
+.gallery-intro p{font-size:0.83rem;line-height:1.7;color:#333;}
+
+/* Mosaic grid */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0.8rem;
+}
+.gallery-item{
+  position:relative;
+  border:var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  cursor:pointer;
+  background:#ddd;
+  aspect-ratio:1/1;
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.gallery-item:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow);}
+.gallery-item.wide{grid-column:span 2;aspect-ratio:16/9;}
+.gallery-item img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top;
+  display:block;
+  transition:transform 0.3s;
+}
+.gallery-item:hover img{transform:scale(1.04);}
+.gallery-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.75));
+  color:#fff;
+  padding:1.5rem 0.7rem 0.6rem;
+  font-size:0.7rem;font-weight:600;
+  letter-spacing:0.02em;
+  transform:translateY(100%);
+  transition:transform 0.25s;
+}
+.gallery-item:hover .gallery-caption{transform:translateY(0);}
+.gallery-tag{
+  position:absolute;top:0.5rem;left:0.5rem;
+  background:#FFD93D;
+  border:2px solid #111;border-radius:100px;
+  padding:0.15rem 0.5rem;
+  font-size:0.6rem;font-weight:700;
+  box-shadow:2px 2px 0 #111;
+  letter-spacing:0.04em;
+}
+
+/* Lightbox */
+.lightbox{
+  display:none;
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,0.92);
+  align-items:center;justify-content:center;
+  padding:1rem;
+}
+.lightbox.open{display:flex;}
+.lightbox-inner{
+  position:relative;
+  max-width:500px;width:100%;
+  background:#F7F3EC;
+  border:var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.lightbox-img{width:100%;display:block;max-height:70vh;object-fit:contain;background:#111;}
+.lightbox-info{padding:0.8rem 1rem;}
+.lightbox-title{
+  font-family:'Caveat',cursive;
+  font-size:1.3rem;margin-bottom:0.3rem;
+}
+.lightbox-desc{font-size:0.78rem;color:#555;line-height:1.5;}
+.lightbox-close{
+  position:absolute;top:0.5rem;right:0.5rem;
+  width:32px;height:32px;
+  background:#FF6B6B;border:2px solid #111;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;font-weight:700;
+  box-shadow:2px 2px 0 #111;
+  z-index:2;
+}
+
+/* ===== PROJECTS / VIDEO SECTION ===== */
+.projects-section{
+  background:#C5E8FF;
+  border-bottom:var(--border);
+  padding:2rem 1.2rem;
+}
+.project-intro{
+  background:#F7F3EC;
+  border:var(--border);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  box-shadow:var(--shadow);
+  margin-bottom:1.5rem;
+}
+.project-intro h2{
+  font-family:'Caveat',cursive;
+  font-size:1.7rem;margin-bottom:0.5rem;
+}
+.project-intro p{font-size:0.83rem;line-height:1.7;color:#333;}
+
+/* Intro video card */
+.video-card{
+  background:#F7F3EC;
+  border:var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin-bottom:1.2rem;
+}
+.video-card:last-child{margin-bottom:0;}
+.video-header{
+  background:#2D1B69;
+  padding:0.7rem 1rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.video-header-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.2rem;letter-spacing:0.06em;
+  color:#FFD93D;
+}
+.video-number{
+  width:28px;height:28px;
+  background:#FF6B6B;
+  border:2px solid #111;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:700;color:#111;
+  flex-shrink:0;
+}
+.video-placeholder{
+  background:#1A1A1A;
+  min-height:200px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0.8rem;
+  padding:2rem;
+}
+.play-icon{
+  width:64px;height:64px;
+  background:#FF6B6B;
+  border:3px solid #F7F3EC;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 4px 20px rgba(255,107,107,0.4);
+}
+.video-placeholder-text{
+  color:rgba(247,243,236,0.6);
+  font-size:0.78rem;font-weight:600;
+  text-align:center;line-height:1.5;
+  letter-spacing:0.03em;
+}
+.video-placeholder-badge{
+  background:#FFD93D;
+  border:2px solid #F7F3EC;border-radius:100px;
+  padding:0.2rem 0.8rem;
+  font-size:0.65rem;font-weight:700;
+  color:#111;letter-spacing:0.06em;
+}
+.video-body{padding:1rem;}
+.video-title{
+  font-family:'Caveat',cursive;
+  font-size:1.4rem;margin-bottom:0.4rem;
+}
+.video-desc{font-size:0.78rem;color:#444;line-height:1.6;margin-bottom:0.6rem;}
+.video-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.6rem;}
+.v-tag{
+  border:1.5px solid #111;border-radius:6px;
+  padding:0.2rem 0.5rem;
+  font-size:0.65rem;font-weight:600;
+  background:#FFD93D;
+}
+.v-tag.blue{background:#4ECDC4;}
+.v-tag.purple{background:#D4C5F9;}
+.v-tag.pink{background:#FFDEE9;}
+.video-status{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  background:#F7F3EC;
+  border:2px solid #111;border-radius:100px;
+  padding:0.2rem 0.7rem;
+  font-size:0.65rem;font-weight:700;
+  box-shadow:2px 2px 0 #111;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+}
+.status-dot.coming{background:#FF9A3C;animation:pulse 1.5s infinite;}
+.status-dot.ready{background:#06D6A0;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* Add video slot CTA */
+.add-video-slot{
+  border:3px dashed #2D1B69;
+  border-radius:var(--radius);
+  padding:1.5rem;
+  text-align:center;
+  background:rgba(45,27,105,0.04);
+  margin-top:1rem;
+}
+.add-video-slot p{
+  font-family:'Caveat',cursive;
+  font-size:1.2rem;color:#2D1B69;margin-bottom:0.3rem;
+}
+.add-video-slot span{font-size:0.75rem;color:#888;}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  padding:1.5rem 1.2rem;
+  text-align:center;
+  color:rgba(247,243,236,0.5);
+  font-size:0.75rem;line-height:1.8;
+}
+footer a{color:#FFD93D;text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:500px){
+  .gallery-grid{grid-template-columns:repeat(3,1fr);}
+  .gallery-item.wide{grid-column:span 3;}
+}
+@media(max-width:480px){
+  .hamburger{display:flex;}
+  .nav-links{display:none;}
+  .page-hero h1{font-size:2.8rem;}
+  .page-hero::before{font-size:8rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="vashani_portfolio.html" class="nav-logo">V<span>.</span>VERMA</a>
+  <ul class="nav-links">
+    <li><a href="vashani_portfolio.html">← Portfolio</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#projects">Project Videos</a></li>
+    <li><a href="vashani_portfolio.html#contact" class="nav-btn">Contact Me</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <h1>My <span>Gallery</span><br>& Projects</h1>
+    <p>A visual journey through my experiences, events, achievements, and the projects I've built along the way.</p>
+    <a href="vashani_portfolio.html" class="hero-back-btn">← Back to Portfolio</a>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section" id="gallery">
+  <div class="sec-label label-pink">📸 PHOTO GALLERY</div>
+
+  <div class="gallery-intro">
+    <h2>Moments that shaped me ✨</h2>
+    <p>From science day competitions at AKS University to the DIDAC India exhibition in New Delhi — each photo here captures a real moment of learning, growth, and showing up. These are the rooms I walked into, the stages I stood on, and the people I stood beside.</p>
+  </div>
+
+  <div class="gallery-grid">
+
+    <!-- Image 1: Group at AKS University conference room -->
+    <div class="gallery-item wide" onclick="openLightbox(this)">
+      <img src="photos/1709122905041.jpg" alt="Science Day at AKS University" 
+           onerror="this.style.background='#2D1B69';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🏫 AKS UNIVERSITY</div>
+      <div class="gallery-caption">National Science Day — AKS University, Satna · Conference Room Presentation</div>
+    </div>
+
+    <!-- Image 2: Stage photo with faculty -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240228-WA0001.jpg" alt="Stage performance with faculty"
+           onerror="this.style.background='#FF6B6B';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🎭 EVENT</div>
+      <div class="gallery-caption">Stage performance with department faculty</div>
+    </div>
+
+    <!-- Image 3: Classroom selfie with teacher -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240219-WA0025.jpg" alt="Classroom with teacher"
+           onerror="this.style.background='#4ECDC4';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">📚 INTERNATIONAL CONFERENCE </div>
+      <div class="gallery-caption">With a distinguished guest speaker at AKS University </div>
+    </div>
+
+    <!-- Image 5: Science day individual -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240404-WA0020.jpg" alt="National Science Day"
+           onerror="this.style.background='#FFD93D';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🎤 SPEECH</div>
+      <div class="gallery-caption">Delivering a speech at AKS University's main auditorium</div>
+    </div>
+
+    <!-- Image 6: Podium speech at AKS -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240828-WA0053.jpg" alt="Speaking at AKS podium"
+           onerror="this.style.background='#06D6A0';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag"> VOLUNTARYS</div>
+      <div class="gallery-caption">Delivering a speech at AKS University's main auditorium</div>
+    </div>
+
+    <!-- Image 15: DIDAC India solo -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/Snapchat-286059166.jpg" alt="Solo at DIDAC India"
+           onerror="this.style.background='#FF9A3C';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🌸 AWARD</div>
+      <div class="gallery-caption">Receiving a bouquet — recognition for contribution </div>
+    </div>
+
+    <!-- Image 14: Internship certificate -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/Snapchat-2113832447.jpg" alt="Internship certificate ceremony"
+           onerror="this.style.background='#FFD93D';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🏆Voluntary in AKSU</div>
+      <div class="gallery-caption">First Time Voluntary in AKSU</div>
+    </div>
+
+    <!-- Image 10: DIDAC India banner group -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20250318-WA0168.jpg" alt="DIDAC India 14th Edition"
+           onerror="this.style.background='#FF6B6B';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🌏 Organising hoil</div>
+      <div class="gallery-caption">Organising Holi celebration with teachers and family."</div>
+    </div>
+
+    <!-- Image 7: Deeksharambh event (wide) -->
+    <div class="gallery-item wide" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240920-WA0093.jpg" alt="Deeksharambh 2024"
+           onerror="this.style.background='#2D1B69';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🎓 DIDAC INDIA< </div>
+      <div class="gallery-caption">DidacIndia — Asia's Largest Education Exhibition, New Delhi</div>
+    </div>
+
+    <!-- Image 9: DIDAC India group -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/IMG-20240920-WA0127.jpg" alt="DIDAC India group photo"
+           onerror="this.style.background='#4ECDC4';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🌏 DIDAC INDIA</div>
+      <div class="gallery-caption">Group Photo with Colleagues</div>
+    </div>
+
+    
+
+    
+
+    <!-- Image 13: Workspace with laptop -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/Snapchat-187368152.jpg" alt="Working at startup desk"
+           onerror="this.style.background='#06D6A0';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🚀 SOLO IMAGE</div>
+      <div class="gallery-caption">It was very great Experience to Attem the DIDAC EVENT</div>
+    </div>
+
+    <!-- Image 16: Blue blazer with rosette -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos/Snapchat-576302430.jpg" alt="Blue blazer official"
+           onerror="this.style.background='#2D1B69';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🎖️ DIDAC SOLO</div>
+      <div class="gallery-caption">Solo moment at DIDAC India — collecting knowledge & connections </div>
+    </div>
+
+    <!-- Image 1: Group at AKS University conference room -->
+    <div class="gallery-item wide" onclick="openLightbox(this)">
+      <img src="photos/Screenshot_20250804_073556_LinkedIn.jpg" alt="Science Day at AKS University" 
+           onerror="this.style.background='#2D1B69';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🏫 Incubation Center Satna</div>
+      <div class="gallery-caption">Internship Drive 2024 — receiving certificate at Satna Smart City</div>
+    </div>
+
+    <!-- Image 11: Holi festival with roses -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos\IMG-20251223-WA0018~2.jpg" alt="Holi celebration with faculty"
+           onerror="this.style.background='#FFDEE9';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">🌹 WE STYLE YOU INTERN</div>
+      <div class="gallery-caption">At the startup workspace — building, learning, creating</div>
+    </div>
+
+    <!-- Image 12: Office / internship -->
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="photos\IMG-20251223-WA0024~2.jpg" alt="Internship at office"
+           onerror="this.style.background='#D4C5F9';this.src='';this.alt='🖼️'"/>
+      <div class="gallery-tag">💼 Working</div>
+      <div class="gallery-caption">Internship days — working from a bright city office</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT VIDEOS SECTION -->
+<section class="projects-section" id="projects">
+  <div class="sec-label label-blue">🎬 PROJECT VIDEOS</div>
+
+  <div class="project-intro">
+    <h2>Watch my work come alive 🚀</h2>
+    <p>This is where I explain my projects in my own words — from idea to implementation. Starting with a quick intro about who I am, then diving into each project one by one. Videos will be added as I build and document my work.</p>
+  </div>
+
+  <!-- INTRO VIDEO -->
+  <div class="video-card">
+    <div class="video-header">
+      <div class="video-number">0</div>
+      <div class="video-header-title">INTRODUCTION — Who Am I?</div>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <div class="video-placeholder-text">My self-introduction video<br>will appear here soon</div>
+      <div class="video-placeholder-badge">📹 COMING SOON</div>
+    </div>
+    <div class="video-body">
+      <div class="video-title">Hello, I'm Vashani Verma 👋</div>
+      <p class="video-desc">A short personal introduction — who I am, what I study, what I love to build, and where I want to go. B.Tech CSE (AI & DS) student at AKS University, Satna. Passionate about AI, Machine Learning, and creating things that matter.</p>
+      <div class="video-tags">
+        <span class="v-tag">AI & DS</span>
+        <span class="v-tag blue">AKS University</span>
+        <span class="v-tag purple">Self Intro</span>
+      </div>
+      <div class="video-status">
+        <span class="status-dot coming"></span>
+        Recording in progress
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 VIDEO -->
+  <div class="video-card">
+    <div class="video-header">
+      <div class="video-number">1</div>
+      <div class="video-header-title">PROJECT — Face Analysis System</div>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <div class="video-placeholder-text">Project walkthrough video<br>will be added here</div>
+      <div class="video-placeholder-badge">📹 COMING SOON</div>
+    </div>
+    <div class="video-body">
+      <div class="video-title">Age & Gender Prediction using AI 🤖</div>
+      <p class="video-desc">A deep-dive explanation of how I built the face analysis system — covering the dataset, model architecture, training process, and real-world demo. I'll walk through the code and show it working live.</p>
+      <div class="video-tags">
+        <span class="v-tag">Python</span>
+        <span class="v-tag blue">OpenCV</span>
+        <span class="v-tag purple">Deep Learning</span>
+        <span class="v-tag pink">Computer Vision</span>
+      </div>
+      <div class="video-status">
+        <span class="status-dot coming"></span>
+        Coming soon
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 VIDEO -->
+  <div class="video-card">
+    <div class="video-header">
+      <div class="video-number">2</div>
+      <div class="video-header-title">PROJECT — Smart Shop Analytics</div>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <div class="video-placeholder-text">Project explanation video<br>will be added here</div>
+      <div class="video-placeholder-badge">📹 COMING SOON</div>
+    </div>
+    <div class="video-body">
+      <div class="video-title">Retail Foot Traffic Intelligence 🛒</div>
+      <p class="video-desc">Explaining how I built a smart analytics system for retail using computer vision — tracking foot traffic, dwell time, and heatmaps to help store owners make data-driven decisions.</p>
+      <div class="video-tags">
+        <span class="v-tag">YOLO</span>
+        <span class="v-tag blue">OpenCV</span>
+        <span class="v-tag purple">Analytics</span>
+      </div>
+      <div class="video-status">
+        <span class="status-dot coming"></span>
+        Coming soon
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 VIDEO -->
+  <div class="video-card">
+    <div class="video-header">
+      <div class="video-number">3</div>
+      <div class="video-header-title">PROJECT — Sentiment Analysis NLP</div>
+    </div>
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <div class="video-placeholder-text">Project explanation video<br>will be added here</div>
+      <div class="video-placeholder-badge">📹 COMING SOON</div>
+    </div>
+    <div class="video-body">
+      <div class="video-title">Understanding Emotions in Text 💬</div>
+      <p class="video-desc">A walkthrough of my NLP-based sentiment analysis project — how I processed text data, selected models, and built a system that can classify emotions in real-world reviews and social media posts.</p>
+      <div class="video-tags">
+        <span class="v-tag">NLP</span>
+        <span class="v-tag blue">BERT</span>
+        <span class="v-tag purple">Python</span>
+        <span class="v-tag pink">Text Classification</span>
+      </div>
+      <div class="video-status">
+        <span class="status-dot coming"></span>
+        Coming soon
+      </div>
+    </div>
+  </div>
+
+  <!-- Future slot CTA -->
+  <div class="add-video-slot">
+    <p>More projects on the way! 🔨</p>
+    <span>New project videos will appear here as I build & document them.</span>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2026 Vashani Verma · Gallery & Projects Page<br>
+    <a href="vashani_portfolio.html">← Back to Portfolio</a> ·
+    <a href="https://github.com/Vashaniverma" target="_blank">GitHub</a> ·
+    <a href="https://linkedin.com/in/vashani-verma-105161254" target="_blank">LinkedIn</a>
+  </p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+    <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+    <div class="lightbox-info">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-desc" id="lightbox-desc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Lightbox
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const caption = el.querySelector('.gallery-caption');
+  const tag = el.querySelector('.gallery-tag');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.alt;
+  document.getElementById('lightbox-title').textContent = tag ? tag.textContent : '';
+  document.getElementById('lightbox-desc').textContent = caption ? caption.textContent : '';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Mobile nav
+document.getElementById('hamburger').addEventListener('click', () => {
+  const nl = document.querySelector('.nav-links');
+  const isOpen = nl.style.display === 'flex';
+  nl.style.display = isOpen ? 'none' : 'flex';
+  if (!isOpen) {
+    nl.style.flexDirection = 'column';
+    nl.style.position = 'absolute';
+    nl.style.top = '56px'; nl.style.left = '0'; nl.style.right = '0';
+    nl.style.background = '#2D1B69'; nl.style.padding = '1rem';
+    nl.style.border = '3px solid #111'; nl.style.borderTop = 'none';
+    nl.style.zIndex = '99';
+  }
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.gallery-item, .video-card, .gallery-intro, .project-intro').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
